@@ -1,0 +1,70 @@
+<!-- ASSOCIATIONS -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- HEAD from /partial -->
+    {{ partial "head.html" }}
+    <!-- Title of the concerned event with -->
+    <title>Associations</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <header>
+                <!-- NAVBAR from partial-->
+                {{ partial "header.html" . }}
+            </header>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <main class="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h1>List of all the associations </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Go through all the pages of the website-->
+                {{ range .Data.Pages }}
+                <!-- Si le type de la page parcouru est associations -->
+                {{ if eq .Type "associations" }}
+                <div class="col-md-4">
+                    <div class="jumbotron">
+                        <div class="card">
+                            <img src="{{ .Params.photo }}" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <!-- This will be the title of our event -->
+                                <h2 class="card-title">
+                                    <a href="{{ .URL }}">
+                                    {{ .Params.Title }} </a> | {{ .Params.Domain }}
+                                    <h2>
+                                        <p>{{ .Params.Description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                {{ .Params.Adresse }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIn if -->
+                {{ end }}
+                <!-- Fin range -->
+                {{ end }}
+            </div>
+        </main>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- FOOTER W/ js/jquery from PARTIAL -->
+            {{ partial "footer.html" }}
+        </div>
+    </div>
+</body>
+
+</html>
